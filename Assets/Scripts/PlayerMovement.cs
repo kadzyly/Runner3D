@@ -34,14 +34,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Vector3 movement = CalculateMovement();
+        ApplyMovement(movement);
+    }
+
+    private Vector3 CalculateMovement()
+    {
         Vector3 forwardMovement = transform.forward * _forwardSpeed;
         Vector3 horizontalMovement = transform.right * (_moveInput.normalized.x * _horizontalSpeed);
+
+        return forwardMovement + horizontalMovement;
+    }
     
-        // move
+    private void ApplyMovement(Vector3 movement)
+    {
         _rigidbody.linearVelocity = new Vector3(
-            forwardMovement.x + horizontalMovement.x,
+            movement.x,
             _rigidbody.linearVelocity.y,
-            forwardMovement.z + horizontalMovement.z
+            movement.z
         );
     }
 }
