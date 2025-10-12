@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _forwardSpeed = 5f;
     [SerializeField] private float _horizontalSpeed = 5f;
+    [SerializeField] private Animator _animator;
     
     private Rigidbody _rigidbody;
     private PlayerInputReader _inputReader;
@@ -15,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _inputReader = GetComponent<PlayerInputReader>();
+    }
+
+    private void Start()
+    {
+        _animator.SetBool("IsRun", true);
     }
 
     private void OnEnable()
