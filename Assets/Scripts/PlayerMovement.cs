@@ -4,13 +4,18 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInputReader))]
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private RoadInfo _roadInfo;
+    [SerializeField] private Animator _animator;
+    
     [SerializeField] private float _forwardSpeed = 5f;
     [SerializeField] private float _horizontalSpeed = 5f;
-    [SerializeField] private Animator _animator;
+    private const float HorizontalMargin = 0.6f;
     
     private Rigidbody _rigidbody;
     private PlayerInputReader _inputReader;
     private Vector2 _moveInput;
+    
+    private float _horizontalLimit;
 
     private void Awake()
     {
@@ -21,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _animator.SetBool("IsRun", true);
+        _roadInfo = _roadInfo.GetComponent<RoadInfo>();
+        _horizontalLimit = _roadInfo.Width / 2f - HorizontalMargin;
     }
 
     private void OnEnable()
@@ -54,10 +61,21 @@ public class PlayerMovement : MonoBehaviour
     
     private void ApplyMovement(Vector3 movement)
     {
-        _rigidbody.linearVelocity = new Vector3(
-            movement.x,
-            _rigidbody.linearVelocity.y,
-            movement.z
-        );
+        Vector3 velocity = movement;
+        velocity.y = _rigidbody.linearVelocity.y;
+
+        ClampHorizontalVelocity(ref velocity);
+
+        _rigidbody.linearVelocity = velocity;
+    }
+
+    private void ClampHorizontalVelocity(ref Vector3 velocity)
+    {
+        float nextX = transform.position.x + velocity.x * Time.fixedDeltaTime;
+
+        if (nextX > _horizontalLimit || nextX < -_horizontalLimit)
+        {
+            velocity.x = 0f;
+        }
     }
 }
