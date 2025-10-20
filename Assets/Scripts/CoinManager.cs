@@ -1,9 +1,12 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
     private int _сoinsCollectedInLevel = 0;
+
+    [SerializeField] private TextMeshProUGUI _text;
     
     private void OnEnable()
     {
@@ -18,5 +21,6 @@ public class CoinManager : MonoBehaviour
     private void AddCoin()
     {
         _сoinsCollectedInLevel++;
+        _text.text = _сoinsCollectedInLevel.ToString();
     }
 }
