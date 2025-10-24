@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rigidbody;
     private PlayerInputReader _inputReader;
     private Vector2 _moveInput;
-    
     private float _horizontalLimit;
 
     private void Awake()
