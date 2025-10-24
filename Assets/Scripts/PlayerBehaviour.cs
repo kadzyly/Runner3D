@@ -20,9 +20,16 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Trip()
     {
-        _animator.SetTrigger("IsTrip");
+        _animator.SetTrigger("Trip");
         Stop();
-        
+        _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+    }
+
+    public void Win()
+    {
+        _animator.SetTrigger("Dance");
+        Stop();
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
     }
