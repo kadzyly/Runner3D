@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 5323370484887772124}
   - component: {fileID: 8646936728471119129}
   m_Layer: 0
-  m_Name: BarrierParticles
+  m_Name: BarrierVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
