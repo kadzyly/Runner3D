@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
-    private ParticleEffectHandler _particles;
+    private SwitchObjectToParticles _particles;
     public static event Action OnHitBarrier;
 
 
     private void Start()
     {
-        _particles = GetComponent<ParticleEffectHandler>();
+        _particles = GetComponent<SwitchObjectToParticles>();
     }
     
     private void OnTriggerEnter(Collider other)
