@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
-    private ParticleEffectHandler  _particles;
+    private ParticleEffectHandler _particles;
     public static event Action OnHitBarrier;
 
 
