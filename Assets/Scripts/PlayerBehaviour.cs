@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private AudioSource _stepsSound;
     private Rigidbody _rigidbody;
     private PlayerMovement _playerMovement;
 
@@ -16,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void Play()
     {
         _playerMovement.enabled = true;
+        _stepsSound.Play();
     }
 
     public void Trip()
@@ -37,5 +39,6 @@ public class PlayerBehaviour : MonoBehaviour
     private void Stop()
     {
         _playerMovement.enabled = false;
+        _stepsSound.Stop();
     }
 }
