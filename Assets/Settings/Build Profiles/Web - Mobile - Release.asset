@@ -38,8 +38,8 @@ MonoBehaviour:
     - line: '|   productName: Runner3D'
     - line: '|   defaultCursor: {instanceID: 0}'
     - line: '|   cursorHotspot: {x: 0, y: 0}'
-    - line: '|   m_SplashScreenBackgroundColor: {r: 0.09803922, g: 0.09803922, b:
-        0.4392157, a: 1}'
+    - line: '|   m_SplashScreenBackgroundColor: {r: 0.3254902, g: 0.5686275, b: 0.7372549,
+        a: 1}'
     - line: '|   m_ShowUnitySplashScreen: 1'
     - line: '|   m_ShowUnitySplashLogo: 1'
     - line: '|   m_SplashScreenOverlayOpacity: 1'
