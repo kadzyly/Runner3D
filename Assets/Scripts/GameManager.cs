@@ -3,10 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    
     [SerializeField] GameObject _startMenu;
     [SerializeField] GameObject _restartMenu;
     [SerializeField] PlayerBehaviour _playerBehaviour;
     [SerializeField] private AudioSource _winSound;
+    
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+    }
     
     public void StartGame()
     {
@@ -28,6 +36,24 @@ public class GameManager : MonoBehaviour
         _restartMenu.SetActive(true);
     }
 
+    private void NotAllCoinsCollected()
+    {
+        _playerBehaviour.Lose();
+        _restartMenu.SetActive(true);
+    }
+
+    private void FinishGame()
+    {
+        if (CoinManager.Instance.CoinCollectedInLevel >= CoinManager.Instance.MaxCoins)
+        {
+            WinGame();
+        }
+        else
+        {
+            NotAllCoinsCollected();
+        }
+    }
+
     public void RestartGame()
     {
         Time.timeScale = 1f;
@@ -37,12 +63,12 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         Barrier.OnHitBarrier += LoseGame;
-        Finish.OnFinish += WinGame;
+        Finish.OnFinish += FinishGame;
     }
 
     private void OnDisable()
     {
         Barrier.OnHitBarrier -= LoseGame;
-        Finish.OnFinish -= WinGame;
+        Finish.OnFinish -= FinishGame;
     }
 }

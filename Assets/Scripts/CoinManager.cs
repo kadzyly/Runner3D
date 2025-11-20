@@ -4,9 +4,29 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
-    private int _сoinsCollectedInLevel = 0;
+    public static CoinManager Instance;
+    private int _сoinCollectedInLevel = 0;
+    private int _maxCoins = 0;
+    
+    [SerializeField] private TextMeshProUGUI _collectedCoinsUIText;
+    [SerializeField] private TextMeshProUGUI _maxCoinsUIText;
+    [SerializeField] private Transform _coinsParent;
 
-    [SerializeField] private TextMeshProUGUI _text;
+    public int CoinCollectedInLevel => _сoinCollectedInLevel;
+    public int MaxCoins => _maxCoins;
+
+    
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        _maxCoins = GetMaxCoins();
+        _maxCoinsUIText.text = _maxCoins.ToString();
+    }
     
     private void OnEnable()
     {
@@ -20,7 +40,12 @@ public class CoinManager : MonoBehaviour
     
     private void AddCoin()
     {
-        _сoinsCollectedInLevel++;
-        _text.text = _сoinsCollectedInLevel.ToString();
+        _сoinCollectedInLevel++;
+        _collectedCoinsUIText.text = _сoinCollectedInLevel.ToString();
+    }
+
+    private int GetMaxCoins()
+    {
+        return _coinsParent.GetComponentsInChildren<Coin>().Length;
     }
 }

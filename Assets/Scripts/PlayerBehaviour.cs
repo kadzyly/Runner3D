@@ -28,6 +28,14 @@ public class PlayerBehaviour : MonoBehaviour
         _rigidbody.angularVelocity = Vector3.zero;
     }
 
+    public void Lose()
+    {
+        _animator.SetTrigger("Fail");
+        Stop();
+        _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+    }
+    
     public void Win()
     {
         _animator.SetTrigger("Dance");
