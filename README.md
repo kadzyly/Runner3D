@@ -1,4 +1,4 @@
-# Runner3D (Unity Learning Project)
+# Runner3D
 
 A 3D runner game built with Unity 6: auto-run forward, dodge obstacles, collect coins.  
 **Win condition:** reach the finish line and collect **100% of the coins**.
