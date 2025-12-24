@@ -68,7 +68,7 @@ Assets/
    ```
 
 2. **Open in Unity**  
-6000.2.10f1 or compatible version
+6000.3.2f1 or compatible version
 
 3. **Install Dependencies**  
 Install packages from `Packages/manifest.json`: Universal Render Pipeline (URP), Input System, Cinemachine, TextMesh Pro
